@@ -1,0 +1,44 @@
+.page{ 
+    padding-top: 100px;
+    margin: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.registerpage{ 
+    width: 500px; 
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+    border-radius:  5px;  
+    background: linear-gradient(180deg,#cef2fa 0%, #59bfef 100%) ;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    padding: 15px;
+}   
+.registerpage button{
+    width: 100px;
+    height: 30px; 
+    border: none;
+    border-radius: 10px;
+}
+.registerpage a{
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+}
+.registerpage p input{
+    min-width: 300px;  
+    margin: 10px;  
+}
+.registerpage p input{
+    height: 25px; 
+}
+.left{
+    align-self: flex-start ;
+    margin-left: 40px;
+    margin-top: 15px;
+}

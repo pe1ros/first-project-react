@@ -1,0 +1,29 @@
+.header{
+    display: flex;
+    justify-content: space-around;
+    border-radius:  5px;  
+    background: linear-gradient(180deg,#cef2fa 0%, #00aeff 100%) ;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+    height: 60px;
+    align-items: center;
+}
+.header a { 
+    color: black;
+    text-decoration: none;
+
+}
+.header button{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(194, 194, 194);
+    border: none;
+    background: linear-gradient(100deg,#cef2fa 0%, #00f7ff 100%) ;
+}
+.header button:hover{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(194, 194, 194);
+    border: 2px solid black; 
+}
