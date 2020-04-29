@@ -10,13 +10,23 @@ import FormPost from '../Posts/FormPost';
   render(){
     const sortPostElements = this.props.posts.posts.sort((a, b) => b.id - a.id) 
     // console.log(this.props.comments.comments)
-    const postsElements = sortPostElements.map(post=> 
-   <Post id={post.id}
-          key={post.id} 
-          user_id={post.user_id} 
-          create_time={post.created_at}
-          title={post.title} 
-          description={post.description} />)  
+    // let numComments
+    // for (let i =0; i<sortPostElements.length;i++){
+    //   numComments = 0;
+    //     for (let j =0; j<this.props.comments.comments.length;j++){
+    //         if(sortPostElements[i].id === this.props.comments.comments[j].commentable_id) 
+    //           numComments++   
+    //     } 
+    //     console.log(sortPostElements[i].id +' ' + numComments)
+    // }
+    const postsElements = sortPostElements.map(post=>   
+        <Post id={post.id}
+        key={post.id} 
+        user_id={post.user_id} 
+        create_time={post.created_at}
+        title={post.title} 
+        description={post.description} 
+        numComments = {this.numComments}/>)  
     return( 
       <div className='main'> 
         Количество постов:  {postsElements.length}
@@ -42,9 +52,9 @@ const mapStateToProps = store =>{
 const mapDispatchToProps = dispatch => {
   return {
 
+    getComments: dispatch(getComments()),
     getPosts: dispatch(getPosts()), 
     getProfileData: dispatch(getProfileData()),
-    getComments: dispatch(getComments()),
 
   }
 }  

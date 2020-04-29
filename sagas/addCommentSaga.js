@@ -1,6 +1,5 @@
 import {takeEvery} from 'redux-saga/effects'
-import { ADD_COMMENT } from '../actions/pageActions'  
-import {history} from '../App'  
+import { ADD_COMMENT } from '../actions/pageActions'   
   
 function fetchAddComment(comment){   
   //console.log(comment.payload.commentable_id)

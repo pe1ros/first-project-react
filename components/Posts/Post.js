@@ -13,6 +13,9 @@ function Post(props) {
         <div>
             Описание: {props.description} 
         </div>  
+        <div>
+            Comments_count : {props.numComments}
+        </div>
     </NavLink> 
     </div>     
     

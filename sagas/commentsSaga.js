@@ -1,10 +1,10 @@
 import {takeEvery, put, call} from 'redux-saga/effects'
 import { GET_COMMENTS, putComments } from '../actions/pageActions'
 
-function fetchComments(){
+async function fetchComments(){
     const userData = JSON.parse(localStorage.getItem('userData'))
 
-    return fetch('https://postify-api.herokuapp.com/comments', { 
+    return await fetch('https://postify-api.herokuapp.com/comments', { 
         headers: {
             'Access-Token': userData.token,
             'Client': userData.client,
