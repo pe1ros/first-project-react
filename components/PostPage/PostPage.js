@@ -4,7 +4,7 @@ import { Redirect  } from 'react-router-dom';
 import { connect } from 'react-redux'  
 import {getProfileData, getPosts, getComments} from '../../actions/pageActions'
 import {changePost} from '../../actions/pageActions'
-import CommentForm from '../../Comments/CommentForm';
+import CommentForm from '../Comments/CommentForm';
 
 class PostPage extends Component {  
     constructor( ){
@@ -26,8 +26,7 @@ class PostPage extends Component {
         
       }  
     render(){  
-        const {title, description} = this.state
-
+        const {title, description} = this.state    
         return (  
             <div className='postpage'> 
                 {
@@ -64,7 +63,8 @@ class PostPage extends Component {
                                 </form>  
                             </div>
                             <div>
-                            <CommentForm id = {this.state.id}/>
+                                {(this.props.location.props) ? 
+                                <CommentForm id = {this.props.location.props.id} /> : '' }
                             </div>
                         </div> : 
                         <div>
@@ -81,7 +81,8 @@ class PostPage extends Component {
                                 </div> 
                             </div>
                             <div>
-                                <CommentForm id = {this.props.location.props.id}/>
+                            {(this.props.location.props) ? 
+                                <CommentForm id = {this.props.location.props.id} /> : '' }
                             </div>                          
                         </div>
                     : <Redirect to="/mainpage"/> 

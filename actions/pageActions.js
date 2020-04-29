@@ -5,6 +5,7 @@ export const PUT_POSTS = 'PUT_POSTS'
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const PUT_COMMENTS = 'PUT_COMMENTS'
 export const ADD_POST = 'ADD_POST'
+export const ADD_COMMENT = 'ADD_COMMENT'
 export const CHANGE_POST = 'CHANGE_POST'
 export const GET_PROFILE_DATA = 'GET_PROFILE_DATA'
 export const PUT_PROFILE_DATA = 'PUT_PROFILE_DATA'
@@ -38,6 +39,12 @@ export function onAddPost(post){
     return { 
         type: ADD_POST,
         payload: post,
+    }
+}
+export function onAddComment(comment){ 
+    return { 
+        type: ADD_COMMENT,
+        payload: comment,
     }
 }
 export function changePost(post){ 
