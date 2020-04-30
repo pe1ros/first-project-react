@@ -63,8 +63,8 @@ class PostPage extends Component {
                                 </form>  
                             </div>
                             <div>
-                                {(this.props.location.props) ? 
-                                <CommentForm id = {this.props.location.props.id} /> : '' }
+                                {(this.props.location.props) && 
+                                <CommentForm id = {this.props.location.props.id} />  }
                             </div>
                         </div> : 
                         <div>
@@ -81,8 +81,8 @@ class PostPage extends Component {
                                 </div> 
                             </div>
                             <div>
-                            {(this.props.location.props) ? 
-                                <CommentForm id = {this.props.location.props.id} /> : '' }
+                                {(this.props.location.props) && 
+                                <CommentForm id = {this.props.location.props.id} />  }  
                             </div>                          
                         </div>
                     : <Redirect to="/mainpage"/> 

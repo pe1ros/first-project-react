@@ -23,7 +23,7 @@ function fetchChangePost(post){
 } 
 
  function timeout (){
-   history.push('/mainpage')
+   history.push('/profilepage')
   }
    
 export function* watchChangePost(){ 

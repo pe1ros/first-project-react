@@ -14,7 +14,7 @@ function Post(props) {
             Описание: {props.description} 
         </div>  
         <div>
-            Comments_count : {props.numComments}
+            Количество комментариев: {props.numComments}
         </div>
     </NavLink> 
     </div>     

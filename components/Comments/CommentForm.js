@@ -8,9 +8,10 @@ class CommentForm extends Component {
       super(props)
   
       this.state = {
-        "message": '', 
-        "commentable_id": this.props.id,
-        "commentable_type": 'Post', 
+        message: '', 
+        commentable_id: this.props.id,
+        commentable_type: 'Post', 
+        showComments:false,
       } 
     } 
     
@@ -23,17 +24,19 @@ class CommentForm extends Component {
       getComments()
       
     }  
-    showComments = () =>{ 
+    showComments = ( ) =>  {   
+       return this.props.comments.comments.map(comment=>  
+        (comment.commentable_id === this.props.id) &&
+         <Comment 
+                key={comment.id} 
+                user_id={comment.user_id} 
+                created_at={comment.created_at}
+                message={comment.message}  /> ) 
+    }
+    onClick = () => {
+      this.setState({showComments:!this.state.showComments})
     }
     render(){ 
-      const list = this.props.comments.comments.map(comment=>  
-      (comment.commentable_id === this.props.id) ?
-       <Comment 
-              key={comment.id} 
-              user_id={comment.user_id} 
-              created_at={comment.created_at}
-              message={comment.message}  />  
-      : '') 
       const {message} = this.state 
         return (
         <div  >
@@ -46,11 +49,11 @@ class CommentForm extends Component {
                                   value={message} 
                                   onChange={this.changeHandler} /></p></h5>
               <button type="submit">Add_comment</button>
-            </form>   
-            <button onClick={this.showComments}>Show_comments</button>
+            </form>     
           </div>
-          <div> 
-            {list}
+          <div>  
+            <button onClick={this.onClick}>Show_comments</button>   
+            {   this.state.showComments && this.showComments()}
           </div>
         </div> 
         )
