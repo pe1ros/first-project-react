@@ -5,31 +5,33 @@ import { connect } from 'react-redux'
 import {getProfileData, getPosts, getComments} from '../../actions/pageActions'
 import {changePost} from '../../actions/pageActions'
 import CommentForm from '../Comments/CommentForm';
+import Button from '@material-ui/core/Button'; 
+import TextField from '@material-ui/core/TextField';
 
 class PostPage extends Component {  
-    constructor( ){
-        super( )
+    constructor(props){
+        super(props)
     
         this.state = {
-          "title": '',
-          "description": '', 
-          "id": '',
+          title: '',
+          description: '', 
+          id: this.props.location.props.id ,
         } 
       }  
     changeHandler = (e) => {
         this.setState({[e.target.name]: e.target.value}) 
-        this.state.id = this.props.location.props.id
       } 
       submitHandler =  (e) =>  {
         e.preventDefault() 
         this.props.changePost(this.state) 
+        this.props.getPosts()  
         
       }  
-    render(){  
-        const {title, description} = this.state    
+    render(){   
+        const {title, description} = this.state  
         return (  
             <div className='postpage'> 
-                {
+                {    
                     (this.props.location.props )?
                         (this.props.location.props.user_id === this.props.profile.profile.data.id) ?
                         <div >  
@@ -47,19 +49,19 @@ class PostPage extends Component {
                             </div>
                             <div  >
                                 <form onSubmit={this.submitHandler} > 
-                                    <h5><p>Заголовок:<input
-                                                        required="required"
+                                <TextField label ='Заголовок'
+                                                        required
                                                         type="text" 
                                                         name="title" 
                                                         value={title} 
-                                                        onChange={this.changeHandler} /></p></h5>
-                                    <h5><p>Описание :<input
-                                                        required="required" 
+                                                        onChange={this.changeHandler} /> 
+                                    <TextField label ='Описание'
+                                                        required 
                                                         type="text" 
                                                         name="description" 
                                                         value={description} 
-                                                        onChange={this.changeHandler} /></p></h5>
-                                    <button type="submit">Изменить пост</button>
+                                                        onChange={this.changeHandler} /> 
+                                    <Button variant="contained" color="secondary" type="submit">Изменить</Button>
                                 </form>  
                             </div>
                             <div>
@@ -85,7 +87,7 @@ class PostPage extends Component {
                                 <CommentForm id = {this.props.location.props.id} />  }  
                             </div>                          
                         </div>
-                    : <Redirect to="/mainpage"/> 
+                    : console.log(window.location.href.split('postpage/')[1]) 
                 }
             </div>   
         
@@ -103,7 +105,7 @@ class PostPage extends Component {
   
   const mapDispatchToProps = dispatch => {
     return { 
-        getPosts: dispatch(getPosts()), 
+        getPosts: post=> dispatch(getPosts()), 
         getProfileData: dispatch(getProfileData()),
         getComments: dispatch(getComments()),
         changePost: post => dispatch(changePost(post))

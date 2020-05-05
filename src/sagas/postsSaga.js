@@ -1,11 +1,12 @@
 import {takeEvery, put, call} from 'redux-saga/effects'
 import { GET_POSTS, putPosts } from '../actions/pageActions'
 
-function fetchPosts(){
+async function fetchPosts(){
     const userData = JSON.parse(localStorage.getItem('userData'))
 
-    return fetch('https://postify-api.herokuapp.com/posts/', { 
+    return await fetch('https://postify-api.herokuapp.com/posts/', { 
         headers: {
+            "Content-Type": "application/json",
             'Access-Token': userData.token,
             'Client': userData.client,
             'Uid': userData.uid,

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux' 
 import Comment from './Comment' 
 import { onAddComment, getComments } from '../../actions/pageActions';
+import Button from '@material-ui/core/Button'; 
+import TextField from '@material-ui/core/TextField';
 
 class CommentForm extends Component { 
     constructor(props){
@@ -13,16 +15,14 @@ class CommentForm extends Component {
         commentable_type: 'Post', 
         showComments:false,
       } 
-    } 
-    
+    }  
     changeHandler = (e) => {
       this.setState({[e.target.name]: e.target.value})
     } 
     submitHandler =  (e) =>  {
       e.preventDefault()  
       this.props.onAddComment(this.state)
-      getComments()
-      
+      this.props.getComments()
     }  
     showComments = ( ) =>  {   
        return this.props.comments.comments.map(comment=>  
@@ -31,7 +31,7 @@ class CommentForm extends Component {
                 key={comment.id} 
                 user_id={comment.user_id} 
                 created_at={comment.created_at}
-                message={comment.message}  /> ) 
+                message={comment.message} /> ) 
     }
     onClick = () => {
       this.setState({showComments:!this.state.showComments})
@@ -42,17 +42,17 @@ class CommentForm extends Component {
         <div  >
           <div  >
             <form onSubmit={this.submitHandler} > 
-              <h5><p>Текст комментария:<input 
-                                  required="required"
+            <TextField label='Текст комментария' 
+                                  required 
                                   type="text" 
                                   name="message" 
                                   value={message} 
-                                  onChange={this.changeHandler} /></p></h5>
-              <button type="submit">Add_comment</button>
+                                  onChange={this.changeHandler} /> 
+              <Button variant="contained" color="primary" type="submit">Add_comment</Button>
             </form>     
           </div>
           <div>  
-            <button onClick={this.onClick}>Show_comments</button>   
+            <Button variant="contained" color="primary" onClick={this.onClick}>Show_comments</Button>   
             {   this.state.showComments && this.showComments()}
           </div>
         </div> 
@@ -70,7 +70,7 @@ class CommentForm extends Component {
   const mapDispatchToProps = dispatch => {
     return {
       onAddComment: comment => dispatch(onAddComment(comment)),
-      getComments: dispatch(getComments()),
+      getComments: comment=> dispatch(getComments()),
          
     }
   } 

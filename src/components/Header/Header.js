@@ -1,19 +1,22 @@
 import React, { Component } from 'react';  
 import './Header.css';
 import { NavLink } from 'react-router-dom';   
+import {history} from '../../App'     
+import { connect } from 'react-redux' 
+import {auth} from '../../actions/pageActions'
+import { isAuthorized } from '../../auth';
  
 
-class Header extends Component { 
-  constructor(){
-    super()
+class Header extends Component {  
+  constructor(props){
+    super(props) 
     this.state ={
-      isAuth: false
+      isAuth : isAuthorized()
     }
-  }
-
+  }   
   onClick = () => {
-    localStorage.clear()
-    this.setState({isAuth:!this.state.isAuth})
+    localStorage.clear()  
+    history.push('/loginpage');
   }
  render(){ 
     return (
@@ -22,10 +25,26 @@ class Header extends Component {
           <NavLink to='/profilepage'>Profile Page</NavLink>
           <NavLink to='/loginpage'>LogIn/SignIn</NavLink> 
           {
-            <button onClick={this.onClick}>LogOut</button> 
+              this.state.isAuth && <button onClick={this.onClick}>LogOut</button> 
           }
       </div>
     );
   }
 }
-export default Header;
+const mapStateToProps = store =>{ 
+  return {  
+    flag: store.auth,     
+  }
+
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+    auth: flag=> dispatch(auth(flag)),  
+
+  }
+} 
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps)(Header);

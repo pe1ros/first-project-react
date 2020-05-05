@@ -1,6 +1,8 @@
 import React, { Component } from 'react';  
 import {onAddPost, getPosts} from '../../actions/pageActions' 
 import { connect } from 'react-redux' 
+import Button from '@material-ui/core/Button'; 
+import TextField from '@material-ui/core/TextField';
 
 class FormPost extends Component { 
     constructor( ){
@@ -27,17 +29,19 @@ class FormPost extends Component {
         <div  >
           <div  >
             <form onSubmit={this.submitHandler} > 
-              <p>Заголовок::<input 
-                                  required="required"
+            <TextField label='Заголовок' 
+                                  required 
                                   type="text" 
                                   name="title" 
                                   value={title} 
-                                  onChange={this.changeHandler} /></p>
-              <p>Описание:<input type="text" 
+                                  onChange={this.changeHandler} /> 
+              <TextField label='Описание'
+                                  required 
+                                   type="text" 
                                   name="description" 
                                   value={description} 
-                                  onChange={this.changeHandler} /></p>
-              <button type="submit">Create Post</button>
+                                  onChange={this.changeHandler} /> 
+              <Button variant="contained" color="primary" type="submit">Create Post</Button>
             </form>  
           </div>
         </div> 

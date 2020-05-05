@@ -1,4 +1,5 @@
 export const LOG_IN = 'LOG_IN'
+export const AUTH = 'AUTH'
 export const REGISTRATION = 'REGISTRATION'
 export const GET_POSTS = 'GET_POSTS'
 export const PUT_POSTS = 'PUT_POSTS'
@@ -74,5 +75,11 @@ export function register (userData){
     return { 
         type: REGISTRATION,
         payload: userData,
+    }
+}
+export function auth (flag){ 
+    return { 
+        type: AUTH,
+        payload: flag,
     }
 }

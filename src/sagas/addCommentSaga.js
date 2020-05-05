@@ -1,10 +1,10 @@
 import {takeEvery} from 'redux-saga/effects'
-import { ADD_COMMENT } from '../actions/pageActions'   
+import { ADD_COMMENT,   } from '../actions/pageActions'   
   
-function fetchAddComment(comment){   
+async function fetchAddComment(comment){   
   // console.log(comment.payload.commentable_id)
     const userData = JSON.parse(localStorage.getItem('userData')) 
-     fetch('https://postify-api.herokuapp.com/comments', {
+     await fetch('https://postify-api.herokuapp.com/comments', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -13,7 +13,7 @@ function fetchAddComment(comment){
         'Uid': userData.uid,
       }, 
       body: JSON.stringify(comment.payload)
-    })   
+    })    
   } 
  
 export function* watchAddComment(){ 

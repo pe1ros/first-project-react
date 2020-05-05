@@ -12,20 +12,19 @@
     padding: 15px;
 }   
 .loginpage button{
-    width: 100px;
+    width: 120px;
     height: 30px; 
     border: none;
     border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 .loginpage a{
     text-decoration: none;
-    color: black;
+    color: white;
     border-radius: 10px;
 }
-.loginpage p input{
-    min-width: 300px;  
-    margin: 10px; 
-}
-.loginpage p input{
-    height: 25px; 
-}
+.loginpage input{
+    min-width: 400px;  
+    margin-bottom: 10px; 
+} 

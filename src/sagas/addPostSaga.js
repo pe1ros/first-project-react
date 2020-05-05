@@ -1,5 +1,5 @@
 import {takeEvery} from 'redux-saga/effects'
-import { ADD_POST,getPosts } from '../actions/pageActions'  
+import { ADD_POST } from '../actions/pageActions'  
   
 async function fetchAddPost(post){   
     const userData = JSON.parse(localStorage.getItem('userData')) 
@@ -12,8 +12,7 @@ async function fetchAddPost(post){
         'Uid': userData.uid,
       }, 
       body: JSON.stringify(post.payload)
-    })  
-     
+    })   
 }  
 export function* watchAddPost(){ 
     yield takeEvery(ADD_POST, fetchAddPost);

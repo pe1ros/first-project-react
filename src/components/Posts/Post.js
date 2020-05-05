@@ -1,25 +1,33 @@
-import React from 'react';     
+import React, { Component } from 'react';     
 import './post.css'
-import { NavLink } from 'react-router-dom';   
+import { Link } from 'react-router-dom';   
 
-function Post(props) {   
-  return ( 
+class Post extends Component {   
+  constructor(props){
+    super(props)
+    this.state = {
+      id: ''
+    }
+  } 
+  render(){ 
+    return ( 
       <div className='post'> 
-      <NavLink to={{ pathname: "/postpage/" + props.id ,
-                    props:props }}>
-        <div  >
-            Заголовок : {props.title}
-        </div>
-        <div>
-            Описание: {props.description} 
-        </div>  
-        <div>
-            Количество комментариев: {props.numComments}
-        </div>
-    </NavLink> 
-    </div>     
-    
-  );
+          <Link to={{ pathname: "/postpage/" + this.props.id ,
+                      props:this.props }}>
+          <div  >
+              Заголовок : {this.props.title}
+          </div>
+          <div>
+              Описание: {this.props.description} 
+          </div>  
+          <div>
+              Количество комментариев: {this.props.numComments}
+          </div>
+          </Link> 
+      </div>     
+      
+    );
+  }
 } 
 
 export default Post;

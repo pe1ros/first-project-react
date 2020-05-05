@@ -1,8 +1,10 @@
 import React, { Component } from 'react';   
 import './loginpage.css'; 
 import { NavLink } from 'react-router-dom'; 
-import {login} from '../../actions/pageActions'
+import {login, auth} from '../../actions/pageActions'
 import { connect } from 'react-redux'  
+import Button from '@material-ui/core/Button'; 
+import TextField from '@material-ui/core/TextField';
 
 class LoginPage extends Component { 
   constructor(props){
@@ -18,9 +20,9 @@ class LoginPage extends Component {
     this.setState({[e.target.name]: e.target.value})
   } 
   submitHandler = (e) =>  {
-    e.preventDefault() 
-    
+    e.preventDefault()  
     this.props.login(this.state) 
+    this.props.auth(true)
   }  
   render(){
     const {email, password} = this.state
@@ -28,19 +30,23 @@ class LoginPage extends Component {
       <div className="page">
         <div className="loginpage">
           <form onSubmit={this.submitHandler} > 
-            <p>Login____:<input
-                                required="required" type="text" 
+             <TextField label='LogIn' 
+                                required  
+                                type="text" 
                                 name="email" 
                                 value={email} 
-                                onChange={this.changeHandler} /></p>
-            <p>Password:<input
-                                required="required" type="text" 
+                                onChange={this.changeHandler} /> 
+             <TextField  label='Password'
+                                required 
+                                type="text" 
                                 name="password" 
                                 value={password} 
-                                onChange={this.changeHandler} /></p>
-            <button type="submit">LogIn</button>
+                                onChange={this.changeHandler} /> 
+            <Button type="submit" variant="contained" color="secondary">Войти</Button> 
+            <Button variant="contained" color="primary" className="left">
+              <NavLink to='/registerpage'>Регистрация</NavLink>
+              </Button> 
           </form> 
-          <button className="left"><NavLink to='/registerpage'>Registration</NavLink></button>
         </div>
       </div> 
       )
@@ -50,6 +56,7 @@ const mapDispatchToProps = dispatch => {
   return {
   
     login: data => dispatch(login(data)),
+    auth: flag=> dispatch(auth(flag)),
 
   }
 } 

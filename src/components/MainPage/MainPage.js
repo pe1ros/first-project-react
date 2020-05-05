@@ -5,7 +5,10 @@ import { connect } from 'react-redux'
 import {getProfileData, getPosts, getComments} from '../../actions/pageActions' 
 import FormPost from '../Posts/FormPost';
 
- class MainPage extends Component {    
+ class MainPage extends Component { 
+  componentDidMount() {
+    getPosts(); 
+  } 
   render(){
     const sortPostElements = this.props.posts.posts.sort((a, b) => b.id - a.id)  
     let numComments
@@ -37,7 +40,7 @@ import FormPost from '../Posts/FormPost';
     return( 
       <div className='main'> 
         Количество постов:  {postsElements ? postsElements.length : ''}
-       <div>
+       <div className='main2'>
          <FormPost />
        </div>
         <div>

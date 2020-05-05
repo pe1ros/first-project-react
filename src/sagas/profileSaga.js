@@ -6,6 +6,7 @@ async function fetchProfile(){
 
     return await fetch('https://postify-api.herokuapp.com/users/me ', { 
         headers: {
+            "Content-Type": "application/json",
             'Access-Token': userData.token,
             'Client': userData.client,
             'Uid': userData.uid,

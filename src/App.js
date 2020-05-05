@@ -13,17 +13,17 @@ import PostPage from './components/PostPage/PostPage';
 export const history = createBrowserHistory();
 
 class App extends Component { 
-  
+    
   render() {  
      
     return ( 
       < Router history={history}>
         <div className="App"> 
-          <Header isAuth={isAuthorized()}/>  
-          {/* <Route exact path="*" render={() => ( 
+          <Header />  
+          <Route exact path="*" render={() => ( 
               <Redirect to="/loginpage"/> 
             )
-          }/>   */}
+          }/>  
           <Route exact path="/mainpage" render={() => (
             isAuthorized() ? (
               <MainPage />

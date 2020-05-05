@@ -6,6 +6,7 @@ import {loginReducer} from './loginReducer'
 import {commentsReducer} from './commentsReducer'
 import {changePostReducer} from './changePostReducer'
 import {commentReducer} from './commentReducer'
+import {authReducer} from './authReducer'
 
 export const rootReducer =  combineReducers({
     posts: postsReducer,
@@ -15,4 +16,5 @@ export const rootReducer =  combineReducers({
     comments: commentsReducer,
     changePost: changePostReducer,
     comment: commentReducer,
+    auth: authReducer,
 })

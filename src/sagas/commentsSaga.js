@@ -6,6 +6,7 @@ async function fetchComments(){
 
     return await fetch('https://postify-api.herokuapp.com/comments', { 
         headers: {
+            "Content-Type": "application/json",
             'Access-Token': userData.token,
             'Client': userData.client,
             'Uid': userData.uid,
