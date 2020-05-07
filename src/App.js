@@ -5,9 +5,10 @@ import ProfilePage from './components/ProfilePage/ProfilePage';
 import LoginPage from './components/LoginPage/LoginPage'; 
 import RegisterPage from './components/RegisterPage/RegisterPage';  
 import {isAuthorized} from './auth'
-import { Redirect, Route, Router } from 'react-router-dom';  
+import { Redirect, Route, Router,Switch } from 'react-router-dom';  
 import { createBrowserHistory } from "history";
-import PostPage from './components/PostPage/PostPage'; 
+import PostPage from './components/PostPage/PostPage';
+import notFound from './components/notFound'  
  
 export const history = createBrowserHistory();
 
@@ -17,7 +18,8 @@ class App extends Component {
      
     return ( 
       < Router history={history}>
-        <div className="App">   
+        <div className="App"> 
+        <Switch> 
           <Route exact path="/" render={() => ( 
               <Redirect to="/loginpage"/> 
             )
@@ -50,7 +52,9 @@ class App extends Component {
               <RegisterPage />
             )
           )}/>  
-          <Route path='/post/:id' component={PostPage}/>  
+          <Route path='/post/:id' component={PostPage}/>
+          <Route component={notFound}/>  
+          </Switch> 
         </div> 
         </ Router>
     );

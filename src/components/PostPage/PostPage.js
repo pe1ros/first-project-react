@@ -23,11 +23,11 @@ class PostPage extends Component {
         let postId = this.props.match.params.id;
         this.fetchPost( postId)
         this.props.getProfileData() 
-    }  
+    } 
     fetchPost(postId){
         if(postId){ 
             this.props.getSinglePost(postId)
-            this.setState({id:postId}) 
+            this.setState({id:postId})
         } 
     } 
     changeHandler = (e) => {
@@ -42,7 +42,7 @@ class PostPage extends Component {
     render(){ 
         let post = this.props.singlePost.data ? this.props.singlePost.data : ''
         let userId = this.props.profile.profile.data ? this.props.profile.profile.data.id : null   
-        const {title, description} = this.state    
+        const {title, description} = this.state 
         return (  
             <div> 
                 <Header />
