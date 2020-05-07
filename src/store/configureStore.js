@@ -11,6 +11,7 @@ import {watchRegister} from '../sagas/registerSaga'
 import {watchGetComments} from '../sagas/commentsSaga'
 import {watchChangePost} from '../sagas/changePostSaga'
 import { watchAddComment } from '../sagas/addCommentSaga';
+import { watchSinglePost } from '../sagas/singlePostSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 export const store = createStore(rootReducer,applyMiddleware(sagaMiddleware,logger) )  
@@ -22,3 +23,4 @@ sagaMiddleware.run(watchRegister)
 sagaMiddleware.run(watchGetComments) 
 sagaMiddleware.run(watchChangePost) 
 sagaMiddleware.run(watchAddComment) 
+sagaMiddleware.run(watchSinglePost) 

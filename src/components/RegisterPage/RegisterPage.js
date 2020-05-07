@@ -5,6 +5,7 @@ import {register} from '../../actions/pageActions'
 import { connect } from 'react-redux'  
 import Button from '@material-ui/core/Button'; 
 import TextField from '@material-ui/core/TextField';
+import Header from '../../components/Header/Header';
  
   
 
@@ -32,40 +33,43 @@ class RegisterPage extends Component {
     const {email, password, passwordConfirm, firstName, lastName} = this.state
  
       return (
-        <div  className="page">
-        <div className="registerpage">
-          <form onSubmit={this.submitHandler} > 
-             <TextField label ='E-mail'
-                                required  type="text" 
-                                name="email" 
-                                value={email} 
-                                onChange={this.changeHandler} /> 
-             <TextField  label ='Password'
-                                required  type="text" 
-                                name="password" 
-                                value={password} 
-                                onChange={this.changeHandler} /> 
-             <TextField label ='Confirm Pass'
-                                required  type="text" 
-                                name="passwordConfirm" 
-                                value={passwordConfirm} 
-                                onChange={this.changeHandler} /> 
-             <TextField label ='First name'
-                               type="text" 
-                                name="firstName" 
-                                value={firstName} 
-                                onChange={this.changeHandler} /> 
-             <TextField label ='Last name'
-                               type="text" 
-                                name="lastName" 
-                                value={lastName} 
-                                onChange={this.changeHandler} />                    
-            <Button variant="contained" color="primary" type="submit">Регистрация</Button>
-          <Button variant="contained" color="secondary" ><NavLink to='/loginpage'>Войти</NavLink></Button>
-          </form> 
+        <div>
+          <Header />
+          <div  className="page">
+          <div className="registerpage">
+            <form onSubmit={this.submitHandler} > 
+              <TextField label ='E-mail'
+                                  required  type="text" 
+                                  name="email" 
+                                  value={email} 
+                                  onChange={this.changeHandler} /> 
+              <TextField  label ='Password'
+                                  required  type="text" 
+                                  name="password" 
+                                  value={password} 
+                                  onChange={this.changeHandler} /> 
+              <TextField label ='Confirm Pass'
+                                  required  type="text" 
+                                  name="passwordConfirm" 
+                                  value={passwordConfirm} 
+                                  onChange={this.changeHandler} /> 
+              <TextField label ='First name'
+                                type="text" 
+                                  name="firstName" 
+                                  value={firstName} 
+                                  onChange={this.changeHandler} /> 
+              <TextField label ='Last name'
+                                type="text" 
+                                  name="lastName" 
+                                  value={lastName} 
+                                  onChange={this.changeHandler} />                    
+              <Button variant="contained" color="primary" type="submit">Регистрация</Button>
+            <Button variant="contained" color="secondary" ><NavLink to='/loginpage'>Войти</NavLink></Button>
+            </form> 
 
-        </div>
-      </div> 
+          </div>
+        </div> 
+      </div>
       )
   } 
 } 

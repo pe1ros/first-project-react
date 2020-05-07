@@ -1,9 +1,7 @@
 import React, { Component } from 'react';  
 import './Header.css';
 import { NavLink } from 'react-router-dom';   
-import {history} from '../../App'     
-import { connect } from 'react-redux' 
-import {auth} from '../../actions/pageActions'
+import {history} from '../../App'      
 import { isAuthorized } from '../../auth';
  
 
@@ -11,9 +9,12 @@ class Header extends Component {
   constructor(props){
     super(props) 
     this.state ={
-      isAuth : isAuthorized()
+      isAuth : '',
     }
-  }   
+  } 
+  componentDidMount(){
+    this.setState({isAuth:isAuthorized()})
+  }  
   onClick = () => {
     localStorage.clear()  
     history.push('/loginpage');
@@ -30,21 +31,5 @@ class Header extends Component {
       </div>
     );
   }
-}
-const mapStateToProps = store =>{ 
-  return {  
-    flag: store.auth,     
-  }
-
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-
-    auth: flag=> dispatch(auth(flag)),  
-
-  }
 } 
-export default connect(
-  mapStateToProps, 
-  mapDispatchToProps)(Header);
+export default Header;

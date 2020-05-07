@@ -1,13 +1,20 @@
-export const LOG_IN = 'LOG_IN'
-export const AUTH = 'AUTH'
+export const LOG_IN = 'LOG_IN' 
 export const REGISTRATION = 'REGISTRATION'
+
 export const GET_POSTS = 'GET_POSTS'
 export const PUT_POSTS = 'PUT_POSTS'
+
+export const GET_SINGLE_POST = 'GET_SINGLE_POST'
+export const PUT_SINGLE_POST = 'PUT_SINGLE_POST'
+
+
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const PUT_COMMENTS = 'PUT_COMMENTS'
+
 export const ADD_POST = 'ADD_POST'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const CHANGE_POST = 'CHANGE_POST'
+
 export const GET_PROFILE_DATA = 'GET_PROFILE_DATA'
 export const PUT_PROFILE_DATA = 'PUT_PROFILE_DATA'
 
@@ -17,11 +24,24 @@ export function getPosts() {
       type:  GET_POSTS, 
     }
 }
+
 export function putPosts(posts){
     return {
         type: PUT_POSTS,
         payload: posts,
 
+    }
+}
+export function getSinglePost(id) {
+    return {
+      type:  GET_SINGLE_POST, 
+      payload: id,
+    }
+}
+export function putSinglePost(post) {
+    return {
+      type:  PUT_SINGLE_POST, 
+      payload: post,
     }
 }
 export function getComments() {
@@ -76,10 +96,4 @@ export function register (userData){
         type: REGISTRATION,
         payload: userData,
     }
-}
-export function auth (flag){ 
-    return { 
-        type: AUTH,
-        payload: flag,
-    }
-}
+} 

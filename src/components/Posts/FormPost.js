@@ -11,20 +11,26 @@ class FormPost extends Component {
       this.state = {
         "title": '',
         "description": '', 
+        update: false,
       } 
     } 
-    
+    componentDidUpdate() {
+      if (this.state.update) {
+        this.props.fetchPosts();
+        this.setState({ update: false });
+      }
+    }
     changeHandler = (e) => {
       this.setState({[e.target.name]: e.target.value})
     } 
     submitHandler =  (e) =>  {
       e.preventDefault() 
-      this.props.onAddPost(this.state)  
-      this.props.getPosts()
-      
+      this.props.onAddPost(this.state)
+      this.props.fetchPosts()
+      this.setState({ update: true });
     }  
-    render(){ 
-      const {title, description} = this.state
+    render(){    
+      const {title, description} = this.state 
         return (
         <div  >
           <div  >

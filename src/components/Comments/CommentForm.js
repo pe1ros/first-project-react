@@ -13,30 +13,44 @@ class CommentForm extends Component {
         message: '', 
         commentable_id: this.props.id,
         commentable_type: 'Post', 
-        showComments:false,
+        showComments:false, 
+        update: false,
       } 
+    } 
+  componentDidMount(){ 
+      this.fetchComments()  
+  }
+  componentDidUpdate() {
+      if (this.state.update) {
+          this.fetchComments()
+          this.setState({ update: false });
+      }
     }  
+  fetchComments(){ 
+    this.props.getComments()
+  }   
     changeHandler = (e) => {
       this.setState({[e.target.name]: e.target.value})
     } 
     submitHandler =  (e) =>  {
-      e.preventDefault()  
+      e.preventDefault() 
       this.props.onAddComment(this.state)
-      this.props.getComments()
+      this.setState({ update: true }); 
     }  
-    showComments = ( ) =>  {   
+    showComments = () =>  {   
        return this.props.comments.comments.map(comment=>  
-        (comment.commentable_id === this.props.id) &&
+        (comment.commentable_id == this.props.id) &&
          <Comment 
                 key={comment.id} 
                 user_id={comment.user_id} 
                 created_at={comment.created_at}
-                message={comment.message} /> ) 
+                message={comment.message} />  
+        ) 
     }
     onClick = () => {
       this.setState({showComments:!this.state.showComments})
     }
-    render(){ 
+    render(){   
       const {message} = this.state 
         return (
         <div  >

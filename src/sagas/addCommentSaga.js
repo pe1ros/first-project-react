@@ -1,8 +1,7 @@
 import {takeEvery} from 'redux-saga/effects'
 import { ADD_COMMENT,   } from '../actions/pageActions'   
   
-async function fetchAddComment(comment){   
-  // console.log(comment.payload.commentable_id)
+async function fetchAddComment(comment){ 
     const userData = JSON.parse(localStorage.getItem('userData')) 
      await fetch('https://postify-api.herokuapp.com/comments', {
       method: 'POST',

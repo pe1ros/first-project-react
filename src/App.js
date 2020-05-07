@@ -1,6 +1,5 @@
 import React, { Component } from 'react' 
 import './App.css';
-import Header from './components/Header/Header';
 import MainPage from './components/MainPage/MainPage'; 
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import LoginPage from './components/LoginPage/LoginPage'; 
@@ -8,7 +7,7 @@ import RegisterPage from './components/RegisterPage/RegisterPage';
 import {isAuthorized} from './auth'
 import { Redirect, Route, Router } from 'react-router-dom';  
 import { createBrowserHistory } from "history";
-import PostPage from './components/PostPage/PostPage';
+import PostPage from './components/PostPage/PostPage'; 
  
 export const history = createBrowserHistory();
 
@@ -18,9 +17,8 @@ class App extends Component {
      
     return ( 
       < Router history={history}>
-        <div className="App"> 
-          <Header />  
-          <Route exact path="*" render={() => ( 
+        <div className="App">   
+          <Route exact path="/" render={() => ( 
               <Redirect to="/loginpage"/> 
             )
           }/>  
@@ -45,8 +43,14 @@ class App extends Component {
               <LoginPage />
             )
           )}/> 
-          <Route path='/registerpage' component={RegisterPage}/>   
-          <Route path='/postpage' component={PostPage}/> 
+          <Route exact path="/registerpage" render={() => (
+            isAuthorized() ? (
+              <Redirect to="/mainpage"/>  
+            ) : (
+              <RegisterPage />
+            )
+          )}/>  
+          <Route path='/post/:id' component={PostPage}/>  
         </div> 
         </ Router>
     );

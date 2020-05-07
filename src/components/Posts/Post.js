@@ -9,19 +9,18 @@ class Post extends Component {
       id: ''
     }
   } 
-  render(){ 
+  render(){  
     return ( 
       <div className='post'> 
-          <Link to={{ pathname: "/postpage/" + this.props.id ,
-                      props:this.props }}>
+          <Link to={ "/post/" + this.props.post.id}>
           <div  >
-              Заголовок : {this.props.title}
+              Заголовок : {this.props.post.title}
           </div>
           <div>
-              Описание: {this.props.description} 
+              Описание: {this.props.post.description} 
           </div>  
           <div>
-              Количество комментариев: {this.props.numComments}
+              Количество комментариев:   {this.props.comments.length}
           </div>
           </Link> 
       </div>     
