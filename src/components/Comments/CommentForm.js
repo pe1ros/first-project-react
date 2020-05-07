@@ -11,14 +11,14 @@ class CommentForm extends Component {
   
       this.state = {
         message: '', 
-        commentable_id: this.props.id,
+        commentable_id: '',
         commentable_type: 'Post', 
         showComments:false, 
         update: false,
       } 
     } 
   componentDidMount(){ 
-      this.fetchComments()  
+      this.fetchComments() 
   }
   componentDidUpdate() {
       if (this.state.update) {
@@ -34,6 +34,7 @@ class CommentForm extends Component {
     } 
     submitHandler =  (e) =>  {
       e.preventDefault() 
+      this.setState({ commentable_id: this.props.id });  
       this.props.onAddComment(this.state)
       this.setState({ update: true }); 
     }  
@@ -50,7 +51,7 @@ class CommentForm extends Component {
     onClick = () => {
       this.setState({showComments:!this.state.showComments})
     }
-    render(){   
+    render(){    
       const {message} = this.state 
         return (
         <div  >

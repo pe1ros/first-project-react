@@ -21,13 +21,13 @@ class PostPage extends Component {
       }   
     componentDidMount(){ 
         let postId = this.props.match.params.id;
-        this.setState({id:postId}) 
         this.fetchPost( postId)
         this.props.getProfileData() 
     }  
     fetchPost(postId){
         if(postId){ 
             this.props.getSinglePost(postId)
+            this.setState({id:postId}) 
         } 
     } 
     changeHandler = (e) => {
