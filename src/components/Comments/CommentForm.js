@@ -18,13 +18,13 @@ class CommentForm extends Component {
       } 
     } 
   componentDidMount(){ 
-      this.fetchComments()  
-      this.setState({ commentable_id: this.props.id });
+      this.fetchComments()
+      this.setState({ commentable_id: this.props.id });  
   }
   componentDidUpdate() {
       if (this.state.update) { 
-          this.fetchComments() 
           this.fetchPost(this.state.commentable_id)
+          this.fetchComments() 
           this.setState({ update: false });
       }
     }  
