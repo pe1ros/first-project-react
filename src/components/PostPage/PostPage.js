@@ -27,6 +27,7 @@ class PostPage extends Component {
     fetchPost(postId){
         if(postId){ 
             this.props.getSinglePost(postId)
+            this.props.getComments()
             this.setState({id:postId})
         } 
     } 
@@ -80,7 +81,7 @@ class PostPage extends Component {
                                     </form>  
                                 </div>
                                 <div>
-                                    <CommentForm id={this.state.id} /> 
+                                    <CommentForm id={this.state.id} fetchPost={() => this.fetchPost(this.state.id)}/> 
                                 </div>
                             </div> : 
                             <div>
@@ -97,7 +98,7 @@ class PostPage extends Component {
                                     </div> 
                                 </div>
                                 <div>
-                                    <CommentForm  id={this.state.id}/> 
+                                    <CommentForm  id={this.state.id} fetchPosts={() => this.fetchPosts(this.state.id)}/> 
                                 </div>                          
                             </div> 
                             : 'Нет данных'

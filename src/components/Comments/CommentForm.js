@@ -18,23 +18,16 @@ class CommentForm extends Component {
       } 
     } 
   componentDidMount(){ 
-      this.fetchComments()
-      this.setState({ commentable_id: this.props.id });  
+      this.fetchComments()  
   }
   componentDidUpdate() {
-      if (this.state.update) { 
-          this.fetchPost(this.state.commentable_id)
+      if (this.state.update) {  
           this.fetchComments() 
           this.setState({ update: false });
       }
     }  
   fetchComments(){ 
     this.props.getComments()
-  } 
-  fetchPost(postId){
-      if(postId){ 
-          this.props.getSinglePost(postId) 
-      } 
   }   
     changeHandler = (e) => {
       this.setState({[e.target.name]: e.target.value})
@@ -43,6 +36,7 @@ class CommentForm extends Component {
     submitHandler =  (e) =>  {
       e.preventDefault()  
       this.props.onAddComment(this.state)
+      this.props.fetchPost()
       this.setState({ update: true }); 
     }  
     showComments = () =>  {   
