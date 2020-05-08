@@ -1,7 +1,7 @@
 import React, { Component } from 'react';   
 import { connect } from 'react-redux' 
 import Comment from './Comment' 
-import { onAddComment, getComments } from '../../actions/pageActions';
+import { onAddComment, getComments, getSinglePost } from '../../actions/pageActions';
 import Button from '@material-ui/core/Button'; 
 import TextField from '@material-ui/core/TextField';
 
@@ -19,15 +19,22 @@ class CommentForm extends Component {
     } 
   componentDidMount(){ 
       this.fetchComments()  
+      this.setState({ commentable_id: this.props.id });
   }
   componentDidUpdate() {
       if (this.state.update) { 
-          this.fetchComments()
+          this.fetchComments() 
+          this.fetchPost(this.state.commentable_id)
           this.setState({ update: false });
       }
     }  
   fetchComments(){ 
     this.props.getComments()
+  } 
+  fetchPost(postId){
+      if(postId){ 
+          this.props.getSinglePost(postId) 
+      } 
   }   
     changeHandler = (e) => {
       this.setState({[e.target.name]: e.target.value})
@@ -51,8 +58,7 @@ class CommentForm extends Component {
     onClick = () => {
       this.setState({showComments:!this.state.showComments})
     }
-    render(){  
-      console.log(this.state.commentable_id)  
+    render(){   
       const {message} = this.state 
         return (
         <div  >
@@ -85,6 +91,7 @@ class CommentForm extends Component {
   
   const mapDispatchToProps = dispatch => {
     return {
+      getSinglePost: id=> dispatch(getSinglePost(id)),
       onAddComment: comment => dispatch(onAddComment(comment)),
       getComments: comment=> dispatch(getComments()),
          

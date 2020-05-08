@@ -97,7 +97,7 @@ class PostPage extends Component {
                                     </div> 
                                 </div>
                                 <div>
-                                    <CommentForm id={this.state.id}/> 
+                                    <CommentForm  id={this.state.id}/> 
                                 </div>                          
                             </div> 
                             : 'Нет данных'
