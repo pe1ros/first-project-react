@@ -18,10 +18,10 @@ class CommentForm extends Component {
       } 
     } 
   componentDidMount(){ 
-      this.fetchComments() 
+      this.fetchComments()  
   }
   componentDidUpdate() {
-      if (this.state.update) {
+      if (this.state.update) { 
           this.fetchComments()
           this.setState({ update: false });
       }
@@ -31,16 +31,16 @@ class CommentForm extends Component {
   }   
     changeHandler = (e) => {
       this.setState({[e.target.name]: e.target.value})
+      this.setState({ commentable_id: this.props.id });
     } 
     submitHandler =  (e) =>  {
-      e.preventDefault() 
-      this.setState({ commentable_id: this.props.id });  
+      e.preventDefault()  
       this.props.onAddComment(this.state)
       this.setState({ update: true }); 
     }  
     showComments = () =>  {   
        return this.props.comments.comments.map(comment=>  
-        (comment.commentable_id == this.props.id) &&
+        (comment.commentable_id === Number(this.props.id)) &&
          <Comment 
                 key={comment.id} 
                 user_id={comment.user_id} 
@@ -51,7 +51,8 @@ class CommentForm extends Component {
     onClick = () => {
       this.setState({showComments:!this.state.showComments})
     }
-    render(){    
+    render(){  
+      console.log(this.state.commentable_id)  
       const {message} = this.state 
         return (
         <div  >

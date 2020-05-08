@@ -3,6 +3,7 @@ import './Header.css';
 import { NavLink } from 'react-router-dom';   
 import {history} from '../../App'      
 import { isAuthorized } from '../../auth';
+import Button from '@material-ui/core/Button'; 
  
 
 class Header extends Component {  
@@ -26,7 +27,7 @@ class Header extends Component {
           <NavLink to='/profilepage'>Profile Page</NavLink>
           <NavLink to='/loginpage'>LogIn/SignIn</NavLink> 
           {
-              this.state.isAuth && <button onClick={this.onClick}>LogOut</button> 
+              this.state.isAuth && <Button variant="contained" color="secondary" onClick={this.onClick}>LogOut</Button> 
           }
       </div>
     );

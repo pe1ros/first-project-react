@@ -42,7 +42,7 @@ class PostPage extends Component {
     render(){ 
         let post = this.props.singlePost.data ? this.props.singlePost.data : ''
         let userId = this.props.profile.profile.data ? this.props.profile.profile.data.id : null   
-        const {title, description} = this.state 
+        const {title, description} = this.state  
         return (  
             <div> 
                 <Header />
