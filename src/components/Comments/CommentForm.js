@@ -4,6 +4,7 @@ import Comment from './Comment'
 import { onAddComment, getComments, getSinglePost } from '../../actions/pageActions';
 import Button from '@material-ui/core/Button'; 
 import TextField from '@material-ui/core/TextField';
+import {filterComments} from './commentsForSinglePost'
 
 class CommentForm extends Component { 
     constructor(props){
@@ -35,19 +36,18 @@ class CommentForm extends Component {
     } 
     submitHandler =  (e) =>  {
       e.preventDefault()  
-      this.props.onAddComment(this.state)
-      this.props.fetchPost()
+      this.props.onAddComment(this.state) 
       this.setState({ update: true }); 
     }  
     showComments = () =>  {   
-       return this.props.comments.comments.map(comment=>  
-        (comment.commentable_id === Number(this.props.id)) &&
+       return filterComments(Number(this.props.id),this.props.comments.comments).map(comment=> 
          <Comment 
                 key={comment.id} 
                 user_id={comment.user_id} 
                 created_at={comment.created_at}
                 message={comment.message} />  
         ) 
+       
     }
     onClick = () => {
       this.setState({showComments:!this.state.showComments})
