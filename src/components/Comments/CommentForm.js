@@ -19,14 +19,14 @@ class CommentForm extends Component {
       } 
     } 
   componentDidMount(){ 
-      this.fetchComments()  
+      this.fetchComments() 
   }
   componentDidUpdate() {
       if (this.state.update) {  
-          this.fetchComments() 
+          this.fetchComments()  
           this.setState({ update: false });
       }
-    }  
+  }  
   fetchComments(){ 
     this.props.getComments()
   }   
@@ -36,7 +36,8 @@ class CommentForm extends Component {
     } 
     submitHandler =  (e) =>  {
       e.preventDefault()  
-      this.props.onAddComment(this.state) 
+      this.props.onAddComment(this.state)
+      this.props.addComment() 
       this.setState({ update: true }); 
     }  
     showComments = () =>  {   

@@ -17,12 +17,19 @@ class PostPage extends Component {
           title: '',
           description: '', 
           id: '',
+          addComment: false,
         }  
       }   
     componentDidMount(){ 
         let postId = this.props.match.params.id;
         this.fetchPost( postId)
         this.props.getProfileData() 
+    } 
+    componentDidUpdate() {
+        if (this.state.addComment) {
+            this.props.getComments()
+            this.setState({ addComment: false });
+        }
     } 
     fetchPost(postId){
         if(postId){ 
@@ -31,6 +38,9 @@ class PostPage extends Component {
             this.setState({id:postId})
         } 
     } 
+    fetchComments(){
+        this.setState({ addComment: true });
+    }
     changeHandler = (e) => {
         this.setState({[e.target.name]: e.target.value}) 
       } 
@@ -81,7 +91,7 @@ class PostPage extends Component {
                                     </form>  
                                 </div>
                                 <div>
-                                    <CommentForm id={this.state.id} fetchPost={() => this.fetchPost(this.state.id)}/> 
+                                    <CommentForm id={this.state.id} addComment={() => this.fetchComments()}/> 
                                 </div>
                             </div> : 
                             <div>
@@ -98,7 +108,7 @@ class PostPage extends Component {
                                     </div> 
                                 </div>
                                 <div>
-                                    <CommentForm  id={this.state.id} fetchPosts={() => this.fetchPosts(this.state.id)}/> 
+                                    <CommentForm  id={this.state.id} addComment={() => this.fetchComments()}/> 
                                 </div>                          
                             </div> 
                             : 'Нет данных'
